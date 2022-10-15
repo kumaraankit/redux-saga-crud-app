@@ -20,12 +20,14 @@ const users = createSlice({
     },
     editUserSlice: (state, action) => {
       state = state.map((i) =>
-        i.id === i.action.paload.id ? action.payload : i
+        i.id === action.payload.id ? action.payload : i
       );
       return state;
     },
     deleteUserSlice: (state, action) => {
-      state = state.filter((i) => i.id !== i.action.paload);
+        console.log("delete")
+      state = state.filter(i => i.id !== action.payload);
+      console.log(state)
       return state;
     },
   },

@@ -1,18 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Input, Button } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { setUserSlice } from "../redux/slice/user";
+import { addUserSlice, editUserSlice } from "../redux/slice/users";
+import {nanoid} from '@reduxjs/toolkit'
 
 function Form() {
-  const [user, setUser] = useState({
-    id: 0,
-    name: "",
-    email: "",
-    password: "",
-  });
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
+  // const [user, setUser] = useState();
 
   const handleChange = (props) => (event) => {
     //  console.log(props)
     // console.log({...user})
-    setUser({ ...user, [props]: event.target.value });
+    dispatch(setUserSlice({ ...user, [props]: event.target.value }));
+  };
+
+  const handleSubmit = () => {
+    console.log("calling")
+    user.id ===0? dispatch(addUserSlice({...user,id:nanoid(8)})) : dispatch(editUserSlice(user));
+    dispatch(
+      setUserSlice({
+        id: 0,
+        name: "",
+        email: "",
+        password: "",
+      })
+    );
   };
   return (
     <Container>
@@ -35,7 +50,7 @@ function Form() {
         fullWidth
         onChange={handleChange("password")}
       />
-      <Button fullWidth variant="contained">
+      <Button onClick={()=>handleSubmit()} fullWidth variant="contained">
         Submit
       </Button>
     </Container>
