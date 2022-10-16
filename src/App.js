@@ -9,10 +9,10 @@ function App() {
   return (
     <Provider store={store}>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4} lg={6}>
+        <Grid item  md={4}  >
           <Form />
         </Grid>
-        <Grid item xs={12} md={8} lg={6}>
+        <Grid item md={9} >
           <Table />
         </Grid>
       </Grid>
