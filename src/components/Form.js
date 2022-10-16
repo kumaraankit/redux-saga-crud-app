@@ -46,7 +46,7 @@ function Form() {
         fullWidth
         onChange={handleChange("password")}
       />
-      <Button onClick={() => handleSubmit()} fullWidth variant="contained">
+      <Button onClick={() => handleSubmit()} fullWidth variant="contained" disabled={!(user.name && user.email && user.password)}>
         Submit
       </Button>
     </Container>

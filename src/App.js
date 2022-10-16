@@ -4,11 +4,13 @@ import "./App.css";
 import Form from "./components/Form";
 import Table from "./components/Table";
 import store from "./store";
+import {Typography} from '@mui/material'
 
 function App() {
   return (
-    <Provider store={store}>
-      <Grid container spacing={2}>
+    <Provider store={store} >
+       <Typography variant="h4" className="heading">CRUD APP </Typography>
+      <Grid container spacing={2} className="main-container">
         <Grid item  md={4}  >
           <Form />
         </Grid>
