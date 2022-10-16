@@ -2,24 +2,20 @@ import React from "react";
 import { Container, Input, Button } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { setUserSlice } from "../redux/slice/user";
-import { addUserSlice, editUserSlice } from "../redux/slice/users";
-import {nanoid} from '@reduxjs/toolkit'
+import { nanoid } from "@reduxjs/toolkit";
+import { CREATE_USER, UPDATE_USER_BY_ID } from "../redux/types";
 
 function Form() {
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
-  // const [user, setUser] = useState();
-
   const handleChange = (props) => (event) => {
-    //  console.log(props)
-    // console.log({...user})
     dispatch(setUserSlice({ ...user, [props]: event.target.value }));
   };
 
   const handleSubmit = () => {
-    console.log("calling")
-    user.id ===0? dispatch(addUserSlice({...user,id:nanoid(8)})) : dispatch(editUserSlice(user));
+    user.id === 0
+      ? dispatch({ type: CREATE_USER, user: { ...user, id: nanoid(8) } })
+      : dispatch({ type: UPDATE_USER_BY_ID, user });
     dispatch(
       setUserSlice({
         id: 0,
@@ -50,7 +46,7 @@ function Form() {
         fullWidth
         onChange={handleChange("password")}
       />
-      <Button onClick={()=>handleSubmit()} fullWidth variant="contained">
+      <Button onClick={() => handleSubmit()} fullWidth variant="contained">
         Submit
       </Button>
     </Container>

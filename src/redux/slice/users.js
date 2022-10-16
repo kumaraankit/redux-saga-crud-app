@@ -12,6 +12,7 @@ const users = createSlice({
   ],
   reducers: {
     getUserSlice: (state, action) => {
+      state = action.payload;
       return state;
     },
     addUserSlice: (state, action) => {
@@ -25,9 +26,9 @@ const users = createSlice({
       return state;
     },
     deleteUserSlice: (state, action) => {
-        console.log("delete")
-      state = state.filter(i => i.id !== action.payload);
-      console.log(state)
+      console.log("delete");
+      state = state.filter((i) => i.id !== action.payload);
+      console.log(state);
       return state;
     },
   },

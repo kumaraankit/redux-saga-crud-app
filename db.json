@@ -1,24 +1,3 @@
 {
-    "users": [{
-        "id": 1,
-        "name": "Satheesh",
-        "email": "Sat@mail.com",
-        "password": "South street"
-    }, {
-        "id": 2,
-        "name": "John",
-        "email": "john@mail.com",
-        "password": "North street"
-    }, {
-        "id": 3,
-        "name": "Robert",
-        "email": "robert@mail.com",
-        "password": "East street"
-    }, {
-        "id": 4,
-        "name": "Mani",
-        "email": "mani@mail.com",
-        "password": "West street"
-    }]
-  
+  "users": []
 }

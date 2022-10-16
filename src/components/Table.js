@@ -9,11 +9,15 @@ import Paper from "@mui/material/Paper";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "@mui/material";
 import { setUserSlice } from "../redux/slice/user";
-import { deleteUserSlice } from "../redux/slice/users";
+import { DELETE_USER_BY_ID, GET_USERS } from "../redux/types";
 
 export default function BasicTable() {
-  const rows = useSelector((state) => state.users);
+  const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch({ type: GET_USERS });
+  }, [dispatch]);
 
   return (
     <TableContainer component={Paper}>
@@ -28,7 +32,7 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {users.map((row) => (
             <TableRow
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -49,7 +53,9 @@ export default function BasicTable() {
               </TableCell>
               <TableCell align="right">
                 <Button
-                  onClick={() => dispatch(deleteUserSlice(row.id))}
+                  onClick={() =>
+                    dispatch({ type: DELETE_USER_BY_ID, id: row.id })
+                  }
                   fullWidth
                   variant="contained"
                 >
